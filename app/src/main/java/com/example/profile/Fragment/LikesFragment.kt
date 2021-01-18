@@ -43,9 +43,9 @@ class LikesFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        mainViewModel.requestInfo("popular/weekly?skip=0&limit=100&withoutFree=true")
-        mainViewModel.resultLiveData.observe(this){image->
-            likeRecyclerView.adapter = LikeAdapter(image,Glide.with(this))
+        mainViewModel.requestInfo("limit=30&page=1&includeEvent=true")
+        mainViewModel.resultLiveData.observe(this){watch->
+            likeRecyclerView.adapter = LikeAdapter(watch,Glide.with(this))
         }
 //        likeAdapter = LikeAdapter(it,Glide.with(this))
 //        likeRecyclerView.adapter = likeAdapter

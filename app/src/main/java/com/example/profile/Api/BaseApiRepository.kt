@@ -66,7 +66,7 @@ open class BaseApiRepository {
      */
     private fun getRetrofitWithGsonConverter(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://mtm-api.apposter.com:7777/api/watch-sells/")
+            .baseUrl("http://mtm-api.apposter.com:7777/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
