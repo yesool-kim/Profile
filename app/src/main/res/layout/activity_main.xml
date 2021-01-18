@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="175dp"
+        android:background="@color/black"
         android:fontFamily="@font/noto_sans_bold"
         android:gravity="center_horizontal"
         android:text="Name"
@@ -48,11 +49,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="199dp"
+        android:background="@color/black"
         android:fontFamily="@font/noto_sans"
         android:gravity="center_horizontal"
         android:text="Follow"
         android:textColor="#B3FFFFFF"
         android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="232dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:tabIndicatorColor="#45C9C6"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextAppearance="@style/tab_text">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/Likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Likes" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/MyDesigns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Designs" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/Purchased"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Purchased" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/Viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="308dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
