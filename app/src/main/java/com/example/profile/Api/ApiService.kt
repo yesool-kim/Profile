@@ -8,7 +8,7 @@ import retrofit2.http.QueryMap
 
 interface ApiService {
 
-    @GET("api/watch-sells")
+    @GET("watch-sells")
     fun getSearchWatch(
         @QueryMap params: MutableMap<String, Any>
     ): Observable<Response<ApiResponse>>

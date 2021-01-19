@@ -1,11 +1,26 @@
 package com.example.profile.Fragment
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.example.profile.Api.Response.ApiResponse
+import com.example.profile.Api.Response.WatchSell
+import com.example.profile.MainViewModel
+import com.example.profile.ProfileRecyclerAdapter
 import com.example.profile.R
+import kotlinx.android.synthetic.main.contents_list.view.*
+import kotlinx.android.synthetic.main.fragment_likes.*
+import kotlinx.android.synthetic.main.fragment_my_designs.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,12 +36,23 @@ class MyDesignsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+        }
+
+        val params = mutableMapOf<String, Any>()
+        params["onlySubs"] = true
+        params["limit"] = 30
+        params["page"] = 1
+        params["includeSubs"] = true
+        mainViewModel.requestInfo(params)
+        mainViewModel.resultLiveData.observe(this){watch->
+            myDesignsRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
         }
     }
 

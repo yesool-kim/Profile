@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="2dp"
+    android:layout_width="108dp"
+    android:layout_height="142dp"
+    android:layout_margin="1dp"
     android:background="#212121">
 
     <ImageView
@@ -23,7 +23,7 @@
         android:layout_height="18dp"
         android:layout_marginTop="111dp"
         android:fontFamily="@font/noto_sans_bold"
-        android:gravity="left"
+        android:gravity="left|center_vertical"
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -36,7 +36,6 @@
         android:layout_width="108dp"
         android:layout_height="4dp"
         android:layout_marginTop="9dp"
-        android:layout_marginBottom="2dp"
         android:background="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

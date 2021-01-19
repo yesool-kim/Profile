@@ -58,14 +58,15 @@ class MainActivity : AppCompatActivity() {
 //        val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab,null)
 
         TabLayoutMediator(TabLayout, Viewpager){
+
             tab, position ->
             val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab,null)
             tab.customView = view
             view.numberText?.text = tabNumberList[position]
             view.tabText?.text = tabTextList[position]
+//            tab.text = tabTextList[position]
+
         }.attach()
-
-
-
     }
+
 }
