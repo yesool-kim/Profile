@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 class MainViewModel : ViewModel() {
     val resultLiveData = MutableLiveData<ApiResponse>()
 
-    fun requestInfo(params: String) {
+    fun requestInfo(params: MutableMap<String, Any>) {
         val compositeDisposable = CompositeDisposable()
 
         val disposable = ApiRepository.requestSearchImage(params).subscribe({

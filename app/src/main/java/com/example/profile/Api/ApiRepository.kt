@@ -7,7 +7,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 object ApiRepository: BaseApiRepository() {
-    fun requestSearchImage(params: String): Observable<Response<ApiResponse>> {
+    fun requestSearchImage(params: MutableMap<String, Any>): Observable<Response<ApiResponse>> {
         return getApiService().getSearchWatch(params)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())

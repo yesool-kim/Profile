@@ -1,6 +1,7 @@
 package com.example.profile.Api
 
 import android.content.Context
+import com.example.profile.Fragment.LikesFragment
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

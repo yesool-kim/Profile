@@ -1,6 +1,8 @@
 package com.example.profile.Fragment
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.profile.R
 import com.bumptech.glide.RequestManager
+import com.example.profile.Api.ApiRepository
 import com.example.profile.Api.Response.ApiResponse
 import com.example.profile.Api.Response.WatchSell
 import com.example.profile.MainViewModel
@@ -23,8 +26,6 @@ import kotlinx.android.synthetic.main.fragment_likes.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-lateinit var likeAdapter: LikesFragment.LikeAdapter
-
 /**
  * A simple [Fragment] subclass.
  * Use the [LikesFragment.newInstance] factory method to
@@ -34,7 +35,7 @@ class LikesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +44,14 @@ class LikesFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        mainViewModel.requestInfo("limit=30&page=1&includeEvent=true")
+        val params = mutableMapOf<String, Any>()
+        params["limit"] = 30
+        params["page"] = 1
+        params["includeEvent"] = true
+        mainViewModel.requestInfo(params)
         mainViewModel.resultLiveData.observe(this){watch->
             likeRecyclerView.adapter = LikeAdapter(watch,Glide.with(this))
         }
-//        likeAdapter = LikeAdapter(it,Glide.with(this))
-//        likeRecyclerView.adapter = likeAdapter
     }
 
     override fun onCreateView(
@@ -82,8 +85,7 @@ class LikesFragment : Fragment() {
     class LikeAdapter(val apiResponse: ApiResponse, val requestManager: RequestManager) :
         RecyclerView.Adapter<LikeAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeAdapter.ViewHolder {
-            val v =
-                LayoutInflater.from(parent.context).inflate(R.layout.contents_list, parent, false)
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_list, parent, false)
             return ViewHolder(v)
         }
 
@@ -100,9 +102,16 @@ class LikesFragment : Fragment() {
             val color = itemView.findViewById<View>(R.id.watchColor)
 
             fun bindItem(watchSell: WatchSell, requestManager: RequestManager) {
+//                Log.d("!!!!","${watchSell.watch.images.preview}")
+                var colorToRGB = watchSell.watch.colors.colors.get(0)
+                Log.d("!!!!","${watchSell.watch.colors.colors}")
+                //시계 타이틀
                 name?.text = watchSell.title
+                //시계 색상
+                color?.setBackgroundColor(Color.rgb(colorToRGB[0],colorToRGB[1],colorToRGB[2]))
+                //시계 이미지
                 requestManager
-                    .load("http://mrtimemaker.com/"+watchSell.watch.images.preview)
+                    .load("http://mrtimemaker.com"+watchSell.watch.images.preview)
                     .into(itemView.watchImage)
             }
         }
