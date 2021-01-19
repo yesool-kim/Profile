@@ -50,7 +50,7 @@ class MyDesignsFragment : Fragment() {
 //        params["limit"] = 30
 //        params["page"] = 1
 //        params["includeSubs"] = true
-//        mainViewModel.requestInfo(params)
+//        mainViewModel.requestSellsWatch(params)
 //        mainViewModel.resultLiveData.observe(this){watch->
 //            myDesignsRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
 //        }

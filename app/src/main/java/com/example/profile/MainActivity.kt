@@ -19,10 +19,14 @@ import kotlinx.android.synthetic.main.custom_tab.*
 import kotlinx.android.synthetic.main.custom_tab.view.*
 import kotlinx.android.synthetic.main.fragment_likes.*
 
+
+
+
 class MainActivity : AppCompatActivity() {
 
     private var tabTextList = arrayListOf("Likes","My Designs","Purchased")
     private var tabNumberList = arrayListOf("21","19","5")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         //계정 정보
         NameText.text = "BICHON"
         FollowText.text = "26 Followers · 12 Followings"
-
+        Log.d("!!!!","tabNumberList: ${tabNumberList}")
         //탭
         init()
     }
@@ -62,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             tab, position ->
             val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab,null)
             tab.customView = view
+//            view.numberText?.text = tabNumberList[position]
             view.numberText?.text = tabNumberList[position]
             view.tabText?.text = tabTextList[position]
 //            tab.text = tabTextList[position]
