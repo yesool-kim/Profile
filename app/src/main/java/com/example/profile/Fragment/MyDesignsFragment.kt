@@ -45,15 +45,15 @@ class MyDesignsFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        val params = mutableMapOf<String, Any>()
-        params["onlySubs"] = true
-        params["limit"] = 30
-        params["page"] = 1
-        params["includeSubs"] = true
-        mainViewModel.requestInfo(params)
-        mainViewModel.resultLiveData.observe(this){watch->
-            myDesignsRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
-        }
+//        val params = mutableMapOf<String, Any>()
+//        params["onlySubs"] = true
+//        params["limit"] = 30
+//        params["page"] = 1
+//        params["includeSubs"] = true
+//        mainViewModel.requestInfo(params)
+//        mainViewModel.resultLiveData.observe(this){watch->
+//            myDesignsRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
+//        }
     }
 
     override fun onCreateView(

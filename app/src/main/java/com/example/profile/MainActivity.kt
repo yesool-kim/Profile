@@ -1,5 +1,6 @@
 package com.example.profile
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -58,7 +59,6 @@ class MainActivity : AppCompatActivity() {
 //        val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab,null)
 
         TabLayoutMediator(TabLayout, Viewpager){
-
             tab, position ->
             val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab,null)
             tab.customView = view
@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 //            tab.text = tabTextList[position]
 
         }.attach()
+
     }
 
 }

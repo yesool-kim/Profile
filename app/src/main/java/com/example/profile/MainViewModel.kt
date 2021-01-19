@@ -9,10 +9,10 @@ import io.reactivex.disposables.CompositeDisposable
 class MainViewModel : ViewModel() {
     val resultLiveData = MutableLiveData<ApiResponse>()
 
-    fun requestInfo(params: MutableMap<String, Any>) {
+    fun requestSellsWatch(params: MutableMap<String, Any>) {
         val compositeDisposable = CompositeDisposable()
 
-        val disposable = ApiRepository.requestSearchImage(params).subscribe({
+        val disposable = ApiRepository.requestSellsWatch(params).subscribe({
             // onNext
             resultLiveData.value = it.body()
         }, { throwable ->
@@ -20,9 +20,22 @@ class MainViewModel : ViewModel() {
         }, {
             // complete
             compositeDisposable.dispose()
-
         })
+        compositeDisposable.add(disposable)
+    }
 
+    fun requestWeeklyPopular(params: MutableMap<String, Any>) {
+        val compositeDisposable = CompositeDisposable()
+
+        val disposable = ApiRepository.requestWeeklyPopular(params).subscribe({
+            // onNext
+            resultLiveData.value = it.body()
+        }, { throwable ->
+            // onError
+        }, {
+            // complete
+            compositeDisposable.dispose()
+        })
         compositeDisposable.add(disposable)
     }
 }

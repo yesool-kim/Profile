@@ -7,8 +7,14 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 object ApiRepository: BaseApiRepository() {
-    fun requestSearchImage(params: MutableMap<String, Any>): Observable<Response<ApiResponse>> {
-        return getApiService().getSearchWatch(params)
+    fun requestSellsWatch(params: MutableMap<String, Any>): Observable<Response<ApiResponse>> {
+        return getApiService().getSellsWatch(params)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun requestWeeklyPopular(params: MutableMap<String, Any>): Observable<Response<ApiResponse>>{
+        return getApiService().getWeeklyPopular(params)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="tab_text" >
+    <style name="tab_text" parent="android:TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/noto_sans_bold</item>
         <item name="android:textColorSecondary">#b3ffffff</item>
         <item name="android:textColorPrimary">@color/black</item>
