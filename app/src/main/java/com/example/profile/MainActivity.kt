@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var tabTextList = arrayListOf("Likes", "My Designs", "Purchased")
     private var tabNumberList = arrayListOf("21", "19", "5")
 
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
