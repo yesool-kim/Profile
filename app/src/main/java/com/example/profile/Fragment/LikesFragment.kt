@@ -46,8 +46,8 @@ class LikesFragment : Fragment() {
         params["page"] = 1
         params["includeEvent"] = true
         mainViewModel.requestSellsWatch(params)
-        mainViewModel.resultLiveData.observe(this){watch->
-            likeRecyclerView.adapter = ProfileRecyclerAdapter(watch,Glide.with(this))
+        mainViewModel.resultLiveData.observe(this) { watch ->
+            likeRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
         }
     }
 

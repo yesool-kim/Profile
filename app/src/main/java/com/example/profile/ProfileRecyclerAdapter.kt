@@ -14,7 +14,10 @@ import kotlinx.android.synthetic.main.contents_list.view.*
 
 class ProfileRecyclerAdapter(val apiResponse: ApiResponse, val requestManager: RequestManager) :
     RecyclerView.Adapter<ProfileRecyclerAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileRecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ProfileRecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_list, parent, false)
         return ViewHolder(v)
     }
@@ -24,7 +27,7 @@ class ProfileRecyclerAdapter(val apiResponse: ApiResponse, val requestManager: R
     }
 
     override fun onBindViewHolder(holder: ProfileRecyclerAdapter.ViewHolder, position: Int) {
-        holder.bindItem(apiResponse.watchSells[position],requestManager)
+        holder.bindItem(apiResponse.watchSells[position], requestManager)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,16 +35,16 @@ class ProfileRecyclerAdapter(val apiResponse: ApiResponse, val requestManager: R
         val color = itemView.findViewById<View>(R.id.watchColor)
 
         fun bindItem(watchSell: WatchSell, requestManager: RequestManager) {
-            Log.d("!!!!","${watchSell.watch.images.preview}")
+            Log.d("!!!!", "${watchSell.watch.images.preview}")
             var colorToRGB = watchSell.watch.colors.colors.get(0)
 //            Log.d("!!!!","${watchSell.watch.colors.colors}")
             //시계 타이틀
             name?.text = watchSell.title
             //시계 색상
-            color?.setBackgroundColor(Color.rgb(colorToRGB[0],colorToRGB[1],colorToRGB[2]))
+            color?.setBackgroundColor(Color.rgb(colorToRGB[0], colorToRGB[1], colorToRGB[2]))
             //시계 이미지
             requestManager
-                .load("http://mrtimemaker.com"+watchSell.watch.images.preview)
+                .load("http://mrtimemaker.com" + watchSell.watch.images.preview)
                 .into(itemView.watchImage)
         }
     }

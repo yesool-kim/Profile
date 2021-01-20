@@ -37,14 +37,14 @@ class PurchasedFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-//        val params = mutableMapOf<String, Any>()
-//        params["skip"] = 0
-//        params["limit"] = 100
-//        params["withoutFree"] = true
-//        mainViewModel.requestWeeklyPopular(params)
-//        mainViewModel.resultLiveData.observe(this){watch->
-//            PurchasedRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
-//        }
+        val params = mutableMapOf<String, Any>()
+        params["skip"] = 0
+        params["limit"] = 100
+        params["withoutFree"] = true
+        mainViewModel.requestWeeklyPopular(params)
+        mainViewModel.resultLiveData.observe(this) { watch ->
+            PurchasedRecyclerView.adapter = ProfileRecyclerAdapter(watch, Glide.with(this))
+        }
     }
 
     override fun onCreateView(
