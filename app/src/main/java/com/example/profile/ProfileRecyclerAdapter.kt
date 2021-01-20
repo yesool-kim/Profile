@@ -35,7 +35,7 @@ class ProfileRecyclerAdapter(val apiResponse: ApiResponse, val requestManager: R
         val color = itemView.findViewById<View>(R.id.watchColor)
 
         fun bindItem(watchSell: WatchSell, requestManager: RequestManager) {
-            Log.d("!!!!", "${watchSell.watch.images.preview}")
+//            Log.d("!!!!", "${watchSell.watch.images.preview}")
             var colorToRGB = watchSell.watch.colors.colors.get(0)
 //            Log.d("!!!!","${watchSell.watch.colors.colors}")
             //시계 타이틀
