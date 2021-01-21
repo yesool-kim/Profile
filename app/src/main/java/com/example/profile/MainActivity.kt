@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.viewpager2.widget.ViewPager2
@@ -65,8 +66,12 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 Log.d("TEST onPageSelected!!", position.toString())
-                numberText.setTextColor(Color.parseColor("#FFFFFF"))
-                tabText.setTextColor(Color.parseColor("#FFFFFF"))
+
+//                TabLayout.getTabAt(position)?.customView
+//                TabLayout.getTabAt(position)?.customView.run {
+//                    numberText.setTextColor(Color.parseColor("#FFFFFF"))
+//                    tabText.setTextColor(Color.parseColor("#FFFFFF"))
+//                }
             }
         })
 
@@ -75,6 +80,28 @@ class MainActivity : AppCompatActivity() {
             tab.customView = view
             view.numberText?.text = tabNumberList[position]
             view.tabText?.text = tabTextList[position]
+            if (position == 0) {
+                val white = ContextCompat.getColor(this@MainActivity, R.color.white)
+                view.numberText?.setTextColor(white)
+                view.tabText?.setTextColor(white)
+            }
         }.attach()
+
+        TabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                val grey = ContextCompat.getColor(this@MainActivity, R.color.grey)
+                tab?.customView?.numberText?.setTextColor(grey)
+                tab?.customView?.tabText?.setTextColor(grey)
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val white = ContextCompat.getColor(this@MainActivity, R.color.white)
+                tab?.customView?.numberText?.setTextColor(white)
+                tab?.customView?.tabText?.setTextColor(white)
+            }
+        })
     }
 }
