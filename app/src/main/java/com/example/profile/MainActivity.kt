@@ -1,20 +1,14 @@
 package com.example.profile
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.profile.Api.ApiRepository
-import com.example.profile.Fragment.LikesFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,9 +54,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        Viewpager.adapter = TabPagerAdapter(this)
+        ProfileViewpager.adapter = TabPagerAdapter(this)
 
-        Viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        ProfileViewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 Log.d("TEST onPageSelected!!", position.toString())
@@ -75,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        TabLayoutMediator(TabLayout, Viewpager) { tab, position ->
+        TabLayoutMediator(TabLayout, ProfileViewpager) { tab, position ->
             val view = LayoutInflater.from(applicationContext).inflate(R.layout.custom_tab, null)
             tab.customView = view
             view.numberText?.text = tabNumberList[position]
